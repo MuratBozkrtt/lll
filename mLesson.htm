@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ödev</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+
+<body>
+        
+    <div class="container" style="width: 100%; padding: 10;">
+        <div class="row">
+            <div class="col-md-4 "style="float=left" >
+                    <button class="btn btn-default" style="margin-top:23px; margin-right:5px; float:left">
+                            
+                             
+                              <a href="Lesson.htm">
+                              <b>Geri Dön</b>
+                          </a>
+                      </button>
+                <h1>Lüften Ders Seçimini Yapınız</h1>
+                <label>Adınız Soyadınız</label>
+                <input type="text" id="txtAdsoyad" class="form-control" placeholder="Murat Bozkurt">
+                <label>E-Posta</label>
+                <input type="text" id="txtMail" class="form-control" placeholder="muratbozkurt@hotmail.com">
+                <label>Öğrenci No</label>
+                <input type="text" id="txtOgr" class="form-control" placeholder="20161129000">
+                <br>
+                <label>Hangi Ders</label>
+                <input type="text" id="txtDers" class="form-control" placeholder="İnternet Programcılığı">
+                <br>
+                <label>Konu</label>
+                <input type="text" id="txtKonu" class="form-control" placeholder="Dernek Takip Programı">
+                <br>
+                <button id="btnKaydet" class="btn btn-primary">Kaydet</button>
+                <hr>
+                <div id="sonuc"></div>
+
+            </div>
+            <div class="col-md-8">
+                <h1>Alınan Ders Ve Konular </h1>
+                <h5>Bir Konu Yanlız Bir Kere Alınabilir!!!</h5>
+                <table class="table table-hover" id="tbKayitlar">
+                    <tr class="bg-info">
+
+                        <td>Adı Soyadı</td>
+                        <td>E-Posta</td>
+                        <td>Öğrenci No</td>
+                        <td>Ders</td>
+                        <td>Konu</td>
+                        <td>Sil</td>
+                    </tr>
+
+                </table>
+                <div id="sayfalar"></div>
+            </div>
+        </div>
+       
+    </div>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script>
+        $(function () {
+            $("#btnKaydet").click(function () {
+
+                var adsoyad = $("#txtAdsoyad").val();
+                var mail = $("#txtMail").val();
+                var ogr = $("#txtOgr").val();
+                var ders = $("#txtDers").val();
+                var konu = $("#txtKonu").val();
+               
+                if (adsoyad == "" || mail == "" || ogr == "" || ders == "" || konu == "") {
+                    $("#sonuc").fadeIn(1000);
+                    $("#sonuc").html("Lütfen Tüm Alanları Doldurunuz!");
+                    $("#sonuc").removeClass();
+                    $("#sonuc").addClass("alert alert-danger");
+                    $("#sonuc").fadeOut(3000);
+                    return false;
+                }
+
+                $("#tbKayitlar").append("<tr><td>" + adsoyad + "</td><td>" + mail + "</td><td>" + ogr +"</td><td>"+ders+"</td><td>"+konu+ "</td><td><button class='btn btn-danger sil'>Sil</button></td></tr>");
+            });
+
+            $(document).on("click", ".sil", function () {
+                var satir = $(this).closest("tr");
+                satir.remove();
+
+            });
+        });
+        
+    </script>
+</body>
+
+</html>
